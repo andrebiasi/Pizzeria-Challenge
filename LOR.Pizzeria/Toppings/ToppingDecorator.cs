@@ -15,6 +15,6 @@ public abstract class ToppingDecorator : Pizza
 
     public string GetToppingWithPrice()
     {
-        return $"{this.ToppingName} - {this.ToppingPrice}";
+        return $"{this.ToppingName} - {PriceHelper.ToAUPrice(this.ToppingPrice)}";
     }
 }

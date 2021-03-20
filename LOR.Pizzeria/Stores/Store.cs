@@ -32,7 +32,7 @@ public abstract class Store
             pizza.Box();
         });
 
-        Console.WriteLine($"\nTotal price is: {order.GetTotal()}");
+        Console.WriteLine($"\nTotal price is: {PriceHelper.ToAUPrice(order.GetTotal())}");
         Console.WriteLine("\nYour pizza(s) is(are) ready!");
     }
 

@@ -15,7 +15,7 @@ public abstract class Pizza
 
     public void Prepare()
     {
-        Console.WriteLine("Preparing " + Name + "...");
+        Console.WriteLine($"Preparing {this.Name} ({PriceHelper.ToAUPrice(this.Price)})...");
         Console.Write($"Adding {string.Join(", ", Ingredients)}");
         Console.WriteLine();
     }
@@ -47,6 +47,6 @@ public abstract class Pizza
 
     public override string ToString()
     {
-        return $"{this.Name} - {string.Join(", ", Ingredients)} - {Price} AUD";
+        return $"{this.Name} - {string.Join(", ", Ingredients)} - {PriceHelper.ToAUPrice(Price)}";
     }
 }
