@@ -6,11 +6,12 @@ namespace LOR.Pizzeria
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to LOR Pizzeria! Please select the store location: Brisbane OR Sydney");
             var store = GetStore();
 
-            Console.WriteLine("MENU");
-            store.PrintMenu();
 
+            Console.WriteLine("MENU");
+            Console.WriteLine(string.Join("\n", store.GetAvailablePizzas()));
             var order = GetOrder(store);
 
             store.PlaceOrder(order);
@@ -21,7 +22,6 @@ namespace LOR.Pizzeria
             Store store = null;
             while (store == null)
             {
-                Console.WriteLine("Welcome to LOR Pizzeria! Please select the store location: Brisbane OR Sydney");
                 var storeName = Console.ReadLine();
                 var storeFactory = new PizzaStoreFactory();
 
@@ -54,7 +54,11 @@ namespace LOR.Pizzeria
                 try
                 {
                     var pizza = store.OrderPizza(pizzaType);
+
+                    Console.WriteLine("EXTRA TOPPINGS");
+                    Console.WriteLine($"{string.Join("\n", pizza.GetAvailableToppingsWithPrice())}. Enter 'X' when no more extras.");
                     pizza = AddToppings(pizza);
+
                     order.AddPizza(pizza);
                 }
                 catch (InvalidPizzaTypeException ex)
@@ -66,10 +70,9 @@ namespace LOR.Pizzeria
 
         private static Pizza AddToppings(Pizza pizza)
         {
-
             while (true)
             {
-                Console.WriteLine("Any extras? Cheese, Mayo, Olive Oil. Enter 'X' when no more extras.");
+                Console.WriteLine($"Extras? Enter 'X' when no more extras.");
                 var topping = Console.ReadLine();
                 if (topping.ToUpper() == "X")
                 {

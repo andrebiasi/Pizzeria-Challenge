@@ -3,15 +3,15 @@ using System.Collections.Generic;
 public class OliveOil : ToppingDecorator
 {
     private Pizza pizza;
-    private string toppingName { get; } = "Olive Oil";
-    private string descripition { get; } = "olive oil";
-    private decimal toppingPrice { get; } = 1.5M;
+    private const string descripition = "olive oil";
+    public override string ToppingName { get; } = "Olive Oil";
+    public override decimal ToppingPrice { get; } = 1.5M;
 
     public override string Name
     {
         get
         {
-            return $"{pizza.Name} + {this.toppingName}";
+            return $"{pizza.Name} + {this.ToppingName}";
         }
     }
 
@@ -20,7 +20,7 @@ public class OliveOil : ToppingDecorator
         get
         {
             var ingredients = new List<string>(pizza.Ingredients);
-            ingredients.Add(this.descripition);
+            ingredients.Add(descripition);
             return ingredients;
         }
     }
@@ -29,7 +29,7 @@ public class OliveOil : ToppingDecorator
     {
         get
         {
-            return this.toppingPrice + pizza.Price;
+            return this.ToppingPrice + pizza.Price;
         }
     }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public abstract class Store
@@ -35,5 +36,5 @@ public abstract class Store
         Console.WriteLine("\nYour pizza(s) is(are) ready!");
     }
 
-    public abstract void PrintMenu();
+    public abstract List<string> GetAvailablePizzas();
 }

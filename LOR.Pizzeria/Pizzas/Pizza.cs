@@ -35,6 +35,11 @@ public abstract class Pizza
         Console.WriteLine("Putting pizza into a nice box...");
     }
 
+    public List<string> GetAvailableToppingsWithPrice()
+    {
+        return this.toppings.GetAvailableToppingsWithPrice(this);
+    }
+
     public Pizza AddTopping(string topping)
     {
         return this.toppings.AddTopping(topping, this);

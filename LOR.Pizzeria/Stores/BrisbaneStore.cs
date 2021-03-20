@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class BrisbaneStore : Store
 {
-    private List<string> AvailablePizzas = new List<string> { "Capriciosa", "Florenza", "Margherita" };
+    private List<string> availablePizzas = new List<string> { "Capriciosa", "Florenza", "Margherita" };
     private IPizzaFactory pizzaFactory;
 
     public BrisbaneStore(IPizzaFactory pizzaFactory, IToppings toppings) : base(pizzaFactory, toppings)
@@ -11,8 +12,8 @@ public class BrisbaneStore : Store
         this.pizzaFactory = pizzaFactory;
     }
 
-    public override void PrintMenu()
+    public override List<string> GetAvailablePizzas()
     {
-        AvailablePizzas.ForEach((pizza) => Console.WriteLine(this.pizzaFactory.CreatePizza(pizza).ToString()));
+        return availablePizzas.Select(pizza => $"{this.pizzaFactory.CreatePizza(pizza).ToString()}").ToList();
     }
 }
