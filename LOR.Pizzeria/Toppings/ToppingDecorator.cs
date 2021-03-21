@@ -1,20 +1,41 @@
 using System.Collections.Generic;
 
-public abstract class ToppingDecorator : Pizza
+public class ToppingDecorator : Pizza
 {
-    public abstract override string Name { get; }
-    public abstract override List<string> Ingredients { get; }
-    public abstract override decimal Price { get; }
+    private Pizza pizza;
+    private readonly string toppingName;
+    private readonly decimal toppingPrice;
 
-    public abstract string ToppingName { get; }
-    public abstract decimal ToppingPrice { get; }
-
-    public ToppingDecorator(IToppings toppings) : base(toppings)
+    public override string Name
     {
+        get
+        {
+            return $"{pizza.Name} + {toppingName}";
+        }
     }
 
-    public string GetToppingWithPrice()
+    public override List<string> Ingredients
     {
-        return $"{this.ToppingName} - {PriceHelper.ToAUPrice(this.ToppingPrice)}";
+        get
+        {
+            var ingredients = new List<string>(pizza.Ingredients);
+            ingredients.Add(toppingName);
+            return ingredients;
+        }
+    }
+
+    public override decimal Price
+    {
+        get
+        {
+            return toppingPrice + pizza.Price;
+        }
+    }
+
+    public ToppingDecorator(string toppingName, decimal toppingPrice, Pizza pizza, IToppings toppings) : base(toppings)
+    {
+        this.toppingName = toppingName;
+        this.toppingPrice = toppingPrice;
+        this.pizza = pizza;
     }
 }

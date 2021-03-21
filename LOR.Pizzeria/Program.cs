@@ -56,7 +56,7 @@ namespace LOR.Pizzeria
                     var pizza = store.OrderPizza(pizzaType);
 
                     Console.WriteLine("EXTRA TOPPINGS");
-                    Console.WriteLine($"{string.Join("\n", pizza.GetAvailableToppingsWithPrice())}. Enter 'X' when no more extras.");
+                    Console.WriteLine($"{string.Join("\n", pizza.GetAvailableToppingsWithPrice())}.");
                     pizza = AddToppings(pizza);
 
                     order.AddPizza(pizza);
